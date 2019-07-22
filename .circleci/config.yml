@@ -13,6 +13,10 @@ jobs:
       - *attach_workspace
       - checkout
       - run: go build -mod=vendor -o "$CIRCLE_WORKING_DIRECTORY/test"
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - "."
   run:
     docker:
       - image: ubuntu:xenial
