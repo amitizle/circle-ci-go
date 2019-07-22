@@ -29,7 +29,5 @@ workflows:
   build:
     jobs:
       - build
-  run:
-    jobs:
       - run
 
