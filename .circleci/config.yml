@@ -15,7 +15,7 @@ jobs:
       - run: go build -mod=vendor -o "$CIRCLE_WORKING_DIRECTORY/test"
   run:
     docker:
-      - image: ubuntu/xenial
+      - image: ubuntu:xenial
     steps:
       - *attach_workspace
       - checkout
