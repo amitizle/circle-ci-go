@@ -29,5 +29,7 @@ workflows:
   build:
     jobs:
       - build
-      - run
+      - run:
+          requires:
+            - build
 
