@@ -24,7 +24,7 @@ jobs:
       - *attach_workspace
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get install ca-certificates
+      - run: sudo apt-get -y install ca-certificates build-essential libssl-dev
       - run: "$CIRCLE_WORKING_DIRECTORY/test"
       - persist_to_workspace:
           root: *workspace_root
@@ -38,4 +38,3 @@ workflows:
       - run:
           requires:
             - build
-
