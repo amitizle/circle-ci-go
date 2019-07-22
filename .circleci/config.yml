@@ -19,17 +19,11 @@ jobs:
             - "."
   run:
     docker:
-      - image: ubuntu:xenial
+      - image: circleci/golang:1.12
     steps:
       - *attach_workspace
       - checkout
-      - run: sudo apt-get update
-      - run: sudo apt-get -y install ca-certificates build-essential libssl-dev
       - run: "$CIRCLE_WORKING_DIRECTORY/test"
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - "."
 workflows:
   version: 2
   build:
