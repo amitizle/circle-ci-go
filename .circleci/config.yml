@@ -13,7 +13,7 @@ jobs:
       - *attach_workspace
       - checkout
       - run: mkdir target
-      - run: go build -mod=vendor -o target/test
+      - run: go build -mod=vendor -o "$CIRCLE_WORKING_DIRECTORY/target/test"
       - persist_to_workspace:
           root: *workspace_root
           paths:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - *attach_workspace
       - checkout
-      - run: ./target/test
+      - run: "$CIRCLE_WORKING_DIRECTORY/target/test"
 workflows:
   version: 2
   build:
