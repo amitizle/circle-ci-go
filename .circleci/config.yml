@@ -1,0 +1,35 @@
+version: 2
+workspace_root: &workspace_root
+  /tmp/workspace
+attach_workspace: &attach_workspace
+  attach_workspace:
+    at: *workspace_root
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - *attach_workspace
+      - checkout
+      - run: go build -mod=vendor -o "$CIRCLE_WORKING_DIRECTORY/test"
+  run:
+    docker:
+      - image: ubuntu/xenial
+    steps:
+      - *attach_workspace
+      - checkout
+      - run: "$CIRCLE_WORKING_DIRECTORY/test"
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - "."
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+  run:
+    jobs:
+      - run
+
