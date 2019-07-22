@@ -23,6 +23,8 @@ jobs:
     steps:
       - *attach_workspace
       - checkout
+      - run: sudo apt-get update
+      - run: sudo apt-get install ca-certificates
       - run: "$CIRCLE_WORKING_DIRECTORY/test"
       - persist_to_workspace:
           root: *workspace_root
